@@ -45,5 +45,9 @@
 				checkbox[0].checked = !checkbox[0].checked;
 			}
 
+
+
+			
+
 			console.log(arr_check);
   }, false);
