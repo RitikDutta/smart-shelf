@@ -16,8 +16,11 @@ const char* password = "air72055";
 
 const char* PARAM_INPUT_1 = "output";
 const char* PARAM_INPUT_2 = "state";
+const char* PARAM_INPUT_3 = "option";
+const char* PARAM_INPUT_4 = "rloop";
+const char* PARAM_INPUT_5 = "rspeed";
 
-const int srelay[] = {0, 2, 27, 5, 32, 21, 25, 4, 26, 23, 13, 19, 33, 15, 18, 22, 14};
+const int srelay[] = {2, 27, 5, 32, 21, 25, 4, 26, 23, 13, 19, 33, 15, 18, 22, 14};
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
@@ -158,6 +161,100 @@ body {
   text-align: center;
 }
 
+
+
+select {
+  /* Reset */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  /* Personalize */
+  width: 20em;
+  height: 3em;
+  padding: 0 4em 0 1em;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg) no-repeat right 0.8em center/1.4em, linear-gradient(to left, rgba(255, 255, 255, 0.3) 3em, rgba(255, 255, 255, 0.2) 3em);
+  color: grey;
+  border-radius: 0.25em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  /* <option> colors */
+  /* Remove focus outline */
+  /* Remove IE arrow */
+}
+select option {
+  color: inherit;
+  background-color: #eeeeee;
+}
+select:focus {
+  outline: none;
+}
+select::-ms-expand {
+  display: none;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 90%;
+    height: 2px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px transparent;
+    background: #eeeeee;
+    border-radius: 25px;
+    border: 0px solid transparent;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
+    background: #1abc9c;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6px;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #eeeeee;
+}
+
+input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px transparent;
+    background: #eeeeee;
+    border-radius: 25px;
+    border: 0px solid transparent;
+}
+
+input[type=range]::-moz-range-thumb {
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px transparent;
+    border: 0px solid transparent;
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
+    background: #1abc9c;
+    cursor: pointer;
+    margin-top: -6px;
+}
+
+
       
     </style>
   </head>
@@ -168,6 +265,7 @@ body {
   <div class="control-group">
     <h1>Select boxes</h1>
     <div class="select">
+    TYPES:
       <select id="framework">
         <option>First select</option>
         <option>Option</option>
@@ -176,13 +274,21 @@ body {
       <div class="select__arrow"></div>
     </div>
     <div class="select">
-      <select>
-        <option>Second select</option>
-        <option>Option</option>
-        <option>Option</option>
+      TIMES:
+      <select id="framework2">
+        <option value="2">2</option>
+        <option value="4">4</option>
+        <option value="6">6</option>
+        <option value="8">8</option>
+        <option value="10">10</option>
+        <option value="12">12</option>
+        <option value="14">14</option>
+        <option value="16">16</option>
       </select>
       <div class="select__arrow"></div>
-    </div>
+    </div> SPEED:
+    <div class="value">20</div>
+      <input type="range" min=100" max="1000" step="5" value="20" id='framework3'>
     <div class="select">
       <button class="button" id="sub">Submit</button>
     </div>
@@ -196,7 +302,7 @@ body {
 
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="2" name="1"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="2" checked name="1"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -207,7 +313,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="27" name="2"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="27" checked name="2"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -218,7 +324,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="5" name="3"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="5" checked name="3"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -229,7 +335,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="32" name="4"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="32" checked name="4"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -240,7 +346,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="21" name="5"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="21" checked name="5"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -251,7 +357,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="25" name="6"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="25" checked name="6"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -262,7 +368,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="4" name="7"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="4" checked name="7"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -273,7 +379,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="26" name="8"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="26" checked name="8"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -284,7 +390,7 @@ body {
   </div>
    <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="23" name="9"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="23" checked name="9"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -295,7 +401,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="13" name="10"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="13" checked name="10"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -306,7 +412,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="19" name="11"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="19" checked name="11"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -317,7 +423,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="33" name="12"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="33" checked name="12"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -328,7 +434,7 @@ body {
   </div>
    <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="15" name="13"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="15" checked name="13"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -339,7 +445,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="18" name="14"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="18" checked name="14"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -350,7 +456,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="22" name="15"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="22" checked name="15"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -361,7 +467,7 @@ body {
   </div>
   <div class="checkbox">
     <label class="checkbox-wrapper">
-      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="14" name="16"/>
+      <input type="checkbox" class="checkbox-input" onchange="toggleCheckbox(this)" id="14" checked name="16"/>
       <span class="checkbox-tile">
         <span class="checkbox-icon">
           
@@ -372,8 +478,24 @@ body {
   </div>
 </fieldset>
 
-
 }
+
+
+
+<script>
+var elem = document.querySelector('input[type="range"]');
+
+var rangeValue = function(){
+  var newValue = elem.value;
+  var target = document.querySelector('.value');
+  target.innerHTML = newValue;
+}
+
+elem.addEventListener("input", rangeValue);
+</script>
+
+
+
     
   
   <script>
@@ -384,8 +506,7 @@ body {
 
       if (name == '1') {
         arr_check.push(13);
-      }
-      else if (name == '3') {
+      }else if (name == '3') {
         arr_check.push(16);
       }
       else if (name == '7') {
@@ -413,21 +534,62 @@ body {
       arr_check.forEach(myFunction);
 
       function myFunction(value) {
+        
         checkbox = document.getElementsByName(value);
         checkbox[0].checked = !checkbox[0].checked;
-        relayon(value);
+        var xhr = new XMLHttpRequest();
+          if(checkbox[0].checked){ xhr.open("GET", "/update?output="+checkbox[0].id+"&state=1", true); }
+          else { xhr.open("GET", "/update?output="+checkbox[0].id+"&state=0", true); }
+          xhr.send();
       }
+        console.log(arr_check);
+      }, false);
 
-      console.log(arr_check);
-  }, false);
+
+
+
+const btn = document.querySelector('#sub');
+const sb =  document.querySelector('#framework')  //TYPE
+const sb2 = document.querySelector('#framework2') //TIME
+const rs =  document.querySelector('#framework3') //SPEED
+//var value = sb2.options[sb2.selectedIndex].value;
+//var rspeed = rs.options[rs.selectedIndex].value;
+
+//  console.log(rspeed, sb2.value);
+
+
+btn.onclick = (event) => {
+    event.preventDefault();
+    // show the selected index
+    console.log(sb.selectedIndex);
+    if (sb.selectedIndex == 0) {
+       arr = [5,6,7,8]
+       relayon(arr, sb.selectedIndex, sb2.value, rs.value)
+    } else if (sb.selectedIndex == 1) {
+       arr = [5,6,7,8]
+       relayon(arr, sb.selectedIndex, sb2.value, rs.value)
+    } else if (sb.selectedIndex == 2) {
+       arr = [1,2,3,4,5,8,9,12,13,14,15,16]
+       if(rs.value*sb2.value>400){
+         for (let i = 0; i < sb2.value; i++) {
+          relayon(arr, sb.selectedIndex, 1, rs.value)
+         }        
+        }
+        else{  
+          relayon(arr, sb.selectedIndex, sb2.value, rs.value)
+        }
+    }
+};
+
+  
   </script> 
-    
+
 
   <script>
-  function relayon(x){
-      arr = [1,2,3,445,125,0]
+  function relayon(x, opt, rloop, rspeed){
+//      arr = [5,6,7,8]
       var xhr = new XMLHttpRequest();
-      xhr.open("GET", "/on1?output="+arr+"&state=1", true);
+      xhr.open("GET", "/on1?output="+x+"&state="+arr.length+"&option="+opt+"&rloop="+rloop+"&rspeed="+rspeed, true);
       xhr.send();
     }
 
@@ -459,44 +621,28 @@ String outputState(int output){
 }
 
 int myf(String arr, int arr_size, int ind) {
-    Serial.print(arr);
-    int t = 0;
+    arr += ",";
     int index = 0;
-    String  a;
     int temp[arr_size];
     String temps = "";
     for (int i = 0; i < arr.length(); i++) {
-      //    Serial.print(i);
       if (arr[i] != ',') {
-        a = arr[i];
-        Serial.print(a);
-        temps += a;
-        Serial.print("-");
-        t++;
+        temps += arr[i];
       }
       else {
         index++;
         temp[index - 1] = temps.toInt();
-        t = 0;
-        Serial.print("+");
-        Serial.print(index);
-        Serial.print("String = ");
-        Serial.println(temps);
         temps = "";
       }
-
-
     }
-
-    Serial.println(temp[0]);
-    Serial.println(temp[1]);
-    Serial.println(temp[2]);
-    Serial.println(temp[3]);
-    Serial.println(temp[4]);
-
     return temp[ind];
   }
 
+void alloff(){
+  for(int i = 0; i<16; i++){
+    digitalWrite(srelay[i], HIGH);  
+  }
+}
 
 void setup(){
   // Serial port for debugging purposes
@@ -518,7 +664,6 @@ void setup(){
   pinMode(25, OUTPUT);
   pinMode(33, OUTPUT);
   pinMode(32, OUTPUT);
-
   
   // Connect to Wi-Fi
   WiFi.begin(ssid, password);
@@ -535,73 +680,85 @@ void setup(){
     request->send_P(200, "text/html", index_html);
   });
 
+
+
+
+
+
+
   server.on("/on1", HTTP_GET, [] (AsyncWebServerRequest * request) {
     String inputMessage1;
     String inputMessage2;
+    String inputMessage3;
+    String loop_count;
+    String rspeed;
     // GET input1 value on <ESP_IP>/update?output=<inputMessage1>&state=<inputMessage2>
-    if (request->hasParam(PARAM_INPUT_1) && request->hasParam(PARAM_INPUT_2)) {
+    if (request->hasParam(PARAM_INPUT_1) && request->hasParam(PARAM_INPUT_2) && request->hasParam(PARAM_INPUT_3) && request->hasParam(PARAM_INPUT_4) && request->hasParam(PARAM_INPUT_5)) {
       inputMessage1 = request->getParam(PARAM_INPUT_1)->value();
       inputMessage2 = request->getParam(PARAM_INPUT_2)->value();
-      digitalWrite(inputMessage1.toInt(), !inputMessage2.toInt());
+      inputMessage3 = request->getParam(PARAM_INPUT_3)->value();
+      loop_count = request->getParam(PARAM_INPUT_4)->value();
+      rspeed = request->getParam(PARAM_INPUT_5)->value();
+      
+//      digitalWrite(inputMessage1.toInt(), !inputMessage2.toInt());
     }
     else {
       inputMessage1 = "No message sent";
       inputMessage2 = "No message sent";
+      inputMessage3 = "No message sent";
+      loop_count = "No message sent";
+      rspeed = "200";
     }
-
-    
-    digitalWrite(inputMessage1[1], HIGH);
-    digitalWrite(inputMessage1[2], HIGH);
-    digitalWrite(inputMessage1[3], HIGH);
-    digitalWrite(inputMessage1[4], HIGH);
-    delay(200);
-    digitalWrite(inputMessage1[1], LOW);
-    digitalWrite(inputMessage1[2], LOW);
-    digitalWrite(inputMessage1[3], LOW);
-    digitalWrite(inputMessage1[4], LOW);
-    delay(200);
-    digitalWrite(inputMessage1[1], HIGH);
-    digitalWrite(inputMessage1[2], HIGH);
-    digitalWrite(inputMessage1[3], HIGH);
-    digitalWrite(inputMessage1[4], HIGH);
-    delay(200);
-    digitalWrite(inputMessage1[1], LOW);
-    digitalWrite(inputMessage1[2], LOW);
-    digitalWrite(inputMessage1[3], LOW);
-    digitalWrite(inputMessage1[4], LOW);
-    delay(200);
-    digitalWrite(inputMessage1[1], HIGH);
-    digitalWrite(inputMessage1[2], HIGH);
-    digitalWrite(inputMessage1[3], HIGH);
-    digitalWrite(inputMessage1[4], HIGH);
-    delay(200);
-    digitalWrite(inputMessage1[1], LOW);
-    digitalWrite(inputMessage1[2], LOW);
-    digitalWrite(inputMessage1[3], LOW);
-    digitalWrite(inputMessage1[4], LOW);
-    delay(200);
-
-
-    int n = myf(inputMessage1, 5, 3);
-    Serial.println(n);
-
-//    //  temp = []
-//  for (int i=0;i<inputMessage1.length(); i++){
-////    Serial.print(i);
-//    Serial.print(inputMessage1[i]);
-//    if(inputMessage1[i] != ','){
-////      temp.append(int(a[i]))
-//        Serial.print(inputMessage1[i]);
-//        Serial.print("comma");
-//    }
+alloff();
+if(inputMessage3.toInt() == 0){
+//  for(int k=0;k<=inputMessage4.toInt(); k++){
+    for(int i =0;i < loop_count.toInt(); i++){
+      for(int j=0; j < inputMessage2.toInt(); j++){
+        digitalWrite(srelay[myf(inputMessage1, inputMessage2.toInt(), j)-1], HIGH);
+      }
+      delay(rspeed.toInt());
+      for(int j =0; j < inputMessage2.toInt(); j++){
+        digitalWrite(srelay[myf(inputMessage1, inputMessage2.toInt(), j)-1], LOW);
+      }
+      delay(rspeed.toInt());
+    }    
 //  }
+}
+else if(inputMessage3.toInt() == 1){
+    for(int i =0;i < loop_count.toInt(); i++){
+        digitalWrite(srelay[myf(inputMessage1, inputMessage2.toInt(), i)-1], HIGH);
+        delay(rspeed.toInt());
+        digitalWrite(srelay[myf(inputMessage1, inputMessage2.toInt(), i)-1], LOW);
+//        delay(rspeed);
+    }
+}
+else if (inputMessage3.toInt() == 2){
+  for(int n = 0; n<loop_count.toInt(); n++){
+    for(int i =0;i < inputMessage2.toInt(); i++){
+      digitalWrite(srelay[myf(inputMessage1, inputMessage2.toInt(), i)-1], !HIGH);
+      delay(rspeed.toInt());
+      digitalWrite(srelay[myf(inputMessage1, inputMessage2.toInt(), i)-1], !LOW);
+//    delay(rspeed);
+    }
+  }
+}
 
 
-    int toint = inputMessage1.indexOf(',');
+
+
+
+
+
     Serial.print("Message recieved InputMessage1 = : ");
-    Serial.print(toint);
+    Serial.println(inputMessage1);
     Serial.print(" And InputMessage2 = ");
     Serial.println(inputMessage2);
+    Serial.print(" And Option = ");
+    Serial.println(inputMessage3);
+    Serial.print(" And loop = ");
+    Serial.println(loop_count);
+    Serial.print(" And speed = ");
+    Serial.println(rspeed);
     request->send(200, "text/plain", "OK");
   });
 
@@ -620,7 +777,7 @@ void setup(){
       inputMessage2 = "No message sent";
     }
 
- 
+
     
     Serial.print("GPIO: ");
     Serial.print(inputMessage1);
@@ -632,14 +789,6 @@ void setup(){
   // Start server
   server.begin();
 }
-//int str_arr(str){
-//  temp = []
-//  for i in range(len(a)):
-//    print(a[i])
-//    if a[i] != ',':
-//    temp.append(int(a[i]))
-//    print(temp)
-//}
 
 
 
@@ -647,5 +796,3 @@ void setup(){
 void loop() {
 
 }
-
- 
